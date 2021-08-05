@@ -1,28 +1,26 @@
-import { Component, OnInit } from '@angular/core';
-import { ChartType, ChartOptions } from 'chart.js';
-import { SingleDataSet, Label, monkeyPatchChartJsLegend, monkeyPatchChartJsTooltip } from 'ng2-charts';
+import { Component } from '@angular/core';
+import { ChartOptions } from 'chart.js';
 
 @Component({
-  selector: 'my-app',
+  selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: [ './app.component.css' ]
 })
-export class AppComponent  {
+export class AppComponent {
+  title = 'ng2-charts-demo';
+
   // Pie
-  public pieChartOptions: ChartOptions = {
-    responsive: true,
+  public pieChartOptions: ChartOptions<'pie'> = {
+    responsive: false,
   };
-  public pieChartLabels: Label[] = [['Download', 'Sales'], ['In', 'Store', 'Sales'], 'Mail Sales'];
-  public pieChartData: SingleDataSet = [300, 500, 100];
-  public pieChartType: ChartType = 'pie';
+  public pieChartLabels = [ [ 'Download', 'Sales' ], [ 'In', 'Store', 'Sales' ], 'Mail Sales' ];
+  public pieChartDatasets = [ {
+    data: [ 300, 500, 100 ]
+  } ];
   public pieChartLegend = true;
   public pieChartPlugins = [];
 
   constructor() {
-    monkeyPatchChartJsTooltip();
-    monkeyPatchChartJsLegend();
   }
 
-  ngOnInit() {
-  }
 }
